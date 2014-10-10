@@ -1,13 +1,15 @@
 <?php
 /**
  * Blameable auditing support for Laravel's Eloquent ORM
- *
+ * Use simplified Session auth
+ * 
  * @author Ross Masters <ross@rossmasters.com>
+ * @author Heinrich Boers <mail@heinrich-boers.net>
+ * 
  * @copyright Ross Masters 2013
  * @license MIT
  */
 
-use Illuminate\Support\Facades\Auth;
 
 return array(
     'users' => array(
@@ -16,7 +18,7 @@ return array(
          * @return int|null User ID, or null if not authenticated
          */
         'active_user' => function() {
-            return Auth::check() ? Auth::user()->id : null;
+            return Session::has('auth') ? Session::get('auth')['id'] : null;
         },
 
         /**
