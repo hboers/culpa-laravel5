@@ -27,8 +27,10 @@ class BlameableObserver
          $change = new Change();
          $change->changed_object = get_class($model)
          $change->user_id = $this->activeUser();
-         $change->old_value = '';
+         
+         $change->old_value = 'created';
          $change->new_value = json_encode($model->toArray());
+         
          $change->save();
     }
     
@@ -38,7 +40,12 @@ class BlameableObserver
      */
     public function updating($model)
     {
-        $this->updateChange($model);    
+           $change = new Change();
+         $change->changed_object = get_class($model)
+         $change->user_id = $this->activeUser();
+         $change->old_value = '';
+         $change->new_value = json_encode($model->toArray());
+         $change->save();
     }
     
     /**
@@ -47,7 +54,12 @@ class BlameableObserver
      */
     public function deleting($model)
     {
-        $this->updateDelete($model);
+          $change = new Change();
+         $change->changed_object = get_class($model)
+         $change->user_id = $this->activeUser();
+         $change->old_value = '';
+         $change->new_value = 'deleted';
+         $change->save();
     }
     
     /**
