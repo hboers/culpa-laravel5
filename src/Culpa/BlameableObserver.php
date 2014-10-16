@@ -22,14 +22,24 @@ class BlameableObserver {
 	 * @param \Illuminate\Database\Eloquent\Model $model
 	 */
 	public function creating ( $model ) {
-		$change = new \Change();
-		$change->changed_object = get_class ( $model );
-		$change->user_id = $this->activeUser ();
-
-		$change->old_value = 'created';
-		$change->new_value = json_encode ( $model->toArray () );
-
-		$change->save ();
+		$class = get_class ( $model );
+		$user_id = $this->activeUser ();
+		$new = $model->toArray ();
+		foreach ( $new as $key => $value ) {
+			if ( $key === 'search_words' ||
+				$key === 'created_at' ||
+				$key === 'updated_at' ) {
+				continue;
+			}
+			$change = new \Change();
+			$change->user_id = $user_id;
+			$change->model_id = $model->id;
+			$change->model = $class;
+			$change->field = $key;
+			$change->old_value = '';
+			$change->new_value = print_r ( $new[ $key ], true );
+			$change->save ();
+		}
 	}
 
 	/**
@@ -39,8 +49,8 @@ class BlameableObserver {
 	public function updating ( $model ) {
 		$class = get_class ( $model );
 		$user_id = $this->activeUser ();
-		$old = $class::find ( $model->id )->toArray();
-		$new = $model->toArray();
+		$old = $class::find ( $model->id )->toArray ();
+		$new = $model->toArray ();
 		foreach ( $old as $key => $value ) {
 			if ( $key === 'id' ||
 				$key === 'search_words' ||
@@ -51,9 +61,11 @@ class BlameableObserver {
 			}
 			$change = new \Change();
 			$change->user_id = $user_id;
-			$change->changed_object = $class . "." . $key;
-			$change->old_value = print_r($value,true);
-			$change->new_value = print_r($new[ $key ],true);
+			$change->model_id = $model->id;
+			$change->model = $class;
+			$change->field = $key;
+			$change->old_value = print_r ( $value, true );
+			$change->new_value = print_r ( $new[ $key ], true );
 			$change->save ();
 		}
 	}
