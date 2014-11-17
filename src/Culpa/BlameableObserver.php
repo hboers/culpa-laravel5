@@ -21,6 +21,7 @@ class BlameableObserver {
 	 * Creating event
 	 * @param \Illuminate\Database\Eloquent\Model $model
 	 */
+/*	
 	public function creating ( $model ) {
 		$class = get_class ( $model );
 		$user_id = $this->activeUser ();
@@ -33,7 +34,7 @@ class BlameableObserver {
 			}
 			$change = new \Change();
 			$change->user_id = $user_id;
-			$change->model_id = 0; // $model->id;
+			$change->model_id = $model->id;
 			$change->model = $class;
 			$change->field = $key;
 			$change->old_value = '';
@@ -41,7 +42,7 @@ class BlameableObserver {
 			$change->save ();
 		}
 	}
-
+*/
 	/**
 	 * Updating event
 	 * @param \Illuminate\Database\Eloquent\Model $model
