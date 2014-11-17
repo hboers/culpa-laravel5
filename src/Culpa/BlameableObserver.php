@@ -16,33 +16,33 @@ namespace Culpa;
 use Illuminate\Support\Facades\Config;
 
 class BlameableObserver {
-
 	/**
 	 * Creating event
 	 * @param \Illuminate\Database\Eloquent\Model $model
 	 */
-/*	
-	public function creating ( $model ) {
-		$class = get_class ( $model );
-		$user_id = $this->activeUser ();
-		$new = $model->toArray ();
-		foreach ( $new as $key => $value ) {
-			if ( $key === 'search_words' ||
-				$key === 'created_at' ||
-				$key === 'updated_at' ) {
-				continue;
-			}
-			$change = new \Change();
-			$change->user_id = $user_id;
-			$change->model_id = $model->id;
-			$change->model = $class;
-			$change->field = $key;
-			$change->old_value = '';
-			$change->new_value = print_r ( $new[ $key ], true );
-			$change->save ();
-		}
-	}
-*/
+	/* 	
+	  public function creating ( $model ) {
+	  $class = get_class ( $model );
+	  $user_id = $this->activeUser ();
+	  $new = $model->toArray ();
+	  foreach ( $new as $key => $value ) {
+	  if ( $key === 'search_words' ||
+	  $key === 'created_at' ||
+	  $key === 'updated_at' ) {
+	  continue;
+	  }
+	  $change = new \Change();
+	  $change->user_id = $user_id;
+	  $change->model_id = $model->id;
+	  $change->model = $class;
+	  $change->field = $key;
+	  $change->old_value = '';
+	  $change->new_value = print_r ( $new[ $key ], true );
+	  $change->save ();
+	  }
+	  }
+	 */
+
 	/**
 	 * Updating event
 	 * @param \Illuminate\Database\Eloquent\Model $model
@@ -53,6 +53,9 @@ class BlameableObserver {
 		$old = $class::find ( $model->id )->toArray ();
 		$new = $model->toArray ();
 		foreach ( $old as $key => $value ) {
+			if ( !isset ( $new[ $key ] ) ) {
+				continue;
+			}
 			if ( $key === 'id' ||
 				$key === 'search_words' ||
 				$key === 'created_at' ||
