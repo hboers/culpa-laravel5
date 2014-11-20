@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Config;
 class BlameableObserver {
 
 	public function creating ( $model ) {
-		if ( !$model->isDirty ( 'deleted_by' ) ) {
+		if ( !$model->isDirty ( 'created_by' ) ) {
 			$user_id = $this->activeUser ();
-			$model->modified_by = $user_id;
+			$model->created_by = $user_id;
 		}
 	}
 
