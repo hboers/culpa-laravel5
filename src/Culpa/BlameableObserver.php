@@ -26,7 +26,7 @@ class BlameableObserver {
 
 	public function deleting ( $model ) {
 		if ( !$model->isDirty ( 'deleted_by' ) ) {
-			$change->user_id = $this->activeUser ();
+			$user_id = $this->activeUser ();
 			$model->deleted_by = $user_id;
 		}
 	}
