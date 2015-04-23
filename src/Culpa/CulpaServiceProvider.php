@@ -28,7 +28,7 @@ class CulpaServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('rmasters/culpa');
+        // TODO $this->package('rmasters/culpa');
     }
 
     /**
@@ -38,8 +38,8 @@ class CulpaServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        //$this->app['config']->package('rmasters/culpa', __DIR__ . '/../config');
-        // TODO $this->app->register('Culpa\CulpaServiceProvider');
+        // TODO $this->app['config']->package('rmasters/culpa', __DIR__ . '/../config');
+        // $this->app->register('Culpa\CulpaServiceProvider');
     }
 
     /**
