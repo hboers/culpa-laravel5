@@ -23,7 +23,7 @@ trait CreatedBy
      * Get the user that created the model
      * @return \Illuminate\Database\Eloquent\Model User instance
      */
-    public function createdBy()
+    function createdBy()
     {
         return $this->belongsTo('App\User','created_by')->withTrashed();
     }
