@@ -8,6 +8,10 @@
             "name": "Ross Masters",
             "email": "ross@rossmasters.com"
         }
+        {
+            "name": "Heinrich Boers",
+            "email": "me@hboers.com"
+        }
     ],
     "homepage": "https://github.com/rmasters/culpa",
     "support": {
@@ -15,16 +19,16 @@
         "wiki": "https://github.com/rmasters/culpa/wiki"
     },
     "require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "4.*",
-        "illuminate/config": "4.*",
-        "illuminate/events": "4.*"
+        "php": ">=5.4.0",
+        "illuminate/support": "5.*",
+        "illuminate/config": "5.*",
+        "illuminate/events": "5.*"
     },
     "require-dev": {
-        "illuminate/database": "4.*",
-        "phpunit/phpunit": "3.7.*",
+        "illuminate/database": "5.*",
+        "phpunit/phpunit": ">3.7.*",
         "satooshi/php-coveralls": "dev-master",
-        "mockery/mockery": "0.8.*"
+        "mockery/mockery": ">0.8.*"
     },
     "autoload": {
         "psr-0": {
