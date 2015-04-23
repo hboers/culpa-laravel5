@@ -23,10 +23,8 @@ trait DeletedBy
      * Get the user that deleted the model
      * @return \Illuminate\Database\Eloquent\Model User instance
      */
-    public function deletedBy()
+    function deletedBy()
     {
-        $model = Config.get('culpa.users.classname', 'App\User');
-        $key = Config::get('culpa.users.deleted_by', 'created_by');
-        return $this->belongsTo($model,$key)->withTrashed();
+        return $this->belongsTo('App\User','created_by')->withTrashed();
     }
 }
