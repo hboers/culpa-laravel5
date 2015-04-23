@@ -15,11 +15,11 @@ To install the package in your project:
 
 Add the following lines to your `composer.json` to fetch from this repository
    
-   "repositories": [                                                                         
-             {                                                                                     
-                 "type": "vcs",                                                                    
-                 "url": "https://github.com/hboers/culpa.git"                                      
-             }                                                                                     
+    "repositories": [                                                                         
+      {                                                                                     
+        "type": "vcs",                                                                    
+         "url": "https://github.com/hboers/culpa.git"                                      
+      }                                                                                     
     ],     
 
 1.  Add to the require section of your `composer.json`:
