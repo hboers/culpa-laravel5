@@ -4,7 +4,8 @@ Blameable extension for Laravel's Eloquent ORM models. This extension
 automatically adds references to the authenticated user when creating, updating
 or soft-deleting a model.
 
-This fork does some version tweaking in composer.json for laravel 5.
+This fork does some version tweaking for laravel 5. You will have do things manually. 
+Please send any errors and/or questions regarding laravel 5 usage to <me@hboers.com>.
 
 ## Installation
 
