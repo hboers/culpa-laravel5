@@ -4,13 +4,12 @@ Blameable extension for Laravel's Eloquent ORM models. This extension
 automatically adds references to the authenticated user when creating, updating
 or soft-deleting a model.
 
-This fork does some version tweaking for laravel 5. You will have do things manually. 
-Please send any errors and/or questions regarding laravel 5 usage to <me@hboers.com>.
+This fork does some version tweaking for laravel 5. Please send any complains, errors and/or 
+questions regarding laravel 5 usage to <me@hboers.com>. 
 
 ## Installation
 
-This package works with PHP 5.3 and above, but includes traits to make it easier
-to use on PHP 5.4+.
+This package works with PHP 5.4 and above and includes traits to make it easier to use.
 
 To install the package in your project:
 
@@ -28,25 +27,14 @@ Add the following lines to your `composer.json` to fetch from this repository
 2.  Run `composer update`,
 3.  Add to the `providers` list in config/app.php:
     `"Culpa\CulpaServiceProvider"`,
-4.  Publish the configuration to your application:
-    `artisan config:publish rmasters/culpa`
 
+I removed the configuration file usage in this fork following 
+"CoC" and - for my purpose - the configuration overhead is useless.
+Thus the following conventions must apply:
 
-Currently the boot and register process is simply commented you need to copy the 
-configuration manually
-
-    cp vendor/rmasters/culpa/src/config/config.php config/culpa.php
-
-For Laravel 5 change the configuration in `config/culpa.php`
-
-    return  [
-      'users' => [
-        'active_user' => function() {
-           return Auth::user() ? Auth::user()->id : null;
-         },
-        'classname' => 'App\User',
-      ]
-    ];
+   * User Model must be `App\User` (Laravel 5 default)
+   * `SoftDeletes` must be used in `App\User` Model 
+   * Blamable key names are: `created_by, updated_by, deleted_by`
 
 ## Usage
 
