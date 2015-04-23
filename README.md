@@ -31,6 +31,21 @@ Add the following lines to your `composer.json` to fetch from this repository
     `artisan config:publish rmasters/culpa`
 
 
+Currently the boot and register process is simply commented you need to copy the 
+configuration manually
+
+    cp vendor/rmasters/culpa/src/config/config.php config/culpa.php
+
+For Laravel default change the configuration
+
+    return  [
+      'users' => [
+        'active_user' => function() {
+           return Auth::user() ? Auth::user()->id : null;
+         },
+        'classname' => 'App\User',
+      ]
+    ];
 
 ## Usage
 
