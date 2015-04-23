@@ -23,7 +23,7 @@ trait UpdatedBy
      * Get the user that updated the model
      * @return \Illuminate\Database\Eloquent\Model User instance
      */
-    public function updatedBy()
+    function updatedBy()
     {
         return $this->belongsTo('App\User','updated_by')->withTrashed();
     }
