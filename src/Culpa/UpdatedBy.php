@@ -25,7 +25,6 @@ trait UpdatedBy
      */
     public function updatedBy()
     {
-        $model = Config::get('culpa.users.classname', 'App\User');
-        return $this->belongsTo($model)->withTrashed();
+        return $this->belongsTo('App\User','updated_by')->withTrashed();
     }
 }
