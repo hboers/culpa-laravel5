@@ -36,7 +36,7 @@ configuration manually
 
     cp vendor/rmasters/culpa/src/config/config.php config/culpa.php
 
-For Laravel default change the configuration
+For Laravel 5 change the configuration in `config/culpa.php`
 
     return  [
       'users' => [
