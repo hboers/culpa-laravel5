@@ -38,7 +38,8 @@ class CulpaServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app['config']->package('rmasters/culpa', __DIR__ . '/../config');
+        //$this->app['config']->package('rmasters/culpa', __DIR__ . '/../config');
+        $this->app->register('Rmasters\Culpa\CulpaServiceProvider');
     }
 
     /**
