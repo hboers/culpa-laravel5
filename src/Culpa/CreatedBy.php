@@ -25,8 +25,6 @@ trait CreatedBy
      */
     public function createdBy()
     {
-        $model = Config::get('culpa.users.classname', 'App\User');
-        $key = Config::get('culpa.users.created_by', 'created_by');
-        return $this->belongsTo($model,$key)->withTrashed();
+        return $this->belongsTo('App\User','created_by')->withTrashed();
     }
 }
