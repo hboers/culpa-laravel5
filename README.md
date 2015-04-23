@@ -13,6 +13,15 @@ to use on PHP 5.4+.
 
 To install the package in your project:
 
+Add the following lines to your `composer.json` to fetch from this repository
+   
+   "repositories": [                                                                         
+             {                                                                                     
+                 "type": "vcs",                                                                    
+                 "url": "https://github.com/hboers/culpa.git"                                      
+             }                                                                                     
+    ],     
+
 1.  Add to the require section of your `composer.json`:
     `"rmasters/culpa": "dev-master"`,
 2.  Run `composer update`,
@@ -20,6 +29,7 @@ To install the package in your project:
     `"Culpa\CulpaServiceProvider"`,
 4.  Publish the configuration to your application:
     `artisan config:publish rmasters/culpa`
+
 
 
 ## Usage
