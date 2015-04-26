@@ -17,21 +17,40 @@ use Illuminate\Support\Facades\Config;
 
 class BlameableObserver {
 
-	public function creating ( $model ) {
+	function creating ( $model ) 
+	{
 		if ( !$model->isDirty ( 'created_by' ) ) {
-			$user_id = $this->activeUser ();
-			$model->created_by = $user_id;
+			$model->created_by = Auth::user()->id;
 		}
 	}
 
-	public function deleting ( $model ) {
+	
+	function deleting ( $model ) 
+	{
 		if ( !$model->isDirty ( 'deleted_by' ) ) {
-			$user_id = $this->activeUser ();
-			$model->deleted_by = $user_id;
+			$model->deleted_by = Auth::user()->id;
 		}
 	}
 
-	public function updating ( $model ) {
+	function updating ( $model ) 
+	{
+		//$this->changelog($model);
+		if ( !$model->isDirty ( 'modified_by' ) ) {
+			$model->modified_by = Auth::user()->id;			
+		}
+	}
+
+	/**
+	 * Write Changelog
+	 *
+	 * @return int User ID
+	 */
+	 /* TODO implement later, CoC => try: use if App\Changelog class exists
+	private function changelog () {
+	
+		
+		
+		return Auth::user()->id;
 		$class = get_class ( $model );
 		$user_id = $this->activeUser ();
 		$old = $class::find ( $model->id )->toArray ();
@@ -56,23 +75,8 @@ class BlameableObserver {
 			$change->new_value = print_r ( $new[ $key ], true );
 			$change->save ();
 		}
-		if ( !$model->isDirty ( 'modified_by' ) ) {
-			$model->modified_by = $user_id;			
-		}
-	}
-
-	/**
-	 * Get the active user
-	 *
-	 * @return int User ID
-	 */
-	protected function activeUser () {
-		$fn = Config::get ( 'culpa::users.active_user' );
-		if ( !is_callable ( $fn ) ) {
-			throw new \Exception ( "culpa::users.active_user should be a closure" );
-		}
-
-		return $fn ();
-	}
+		
+		
+	}*/
 
 }
