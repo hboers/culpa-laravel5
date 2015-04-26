@@ -37,7 +37,7 @@ class BlameableObserver {
 	{
 		//$this->changelog($model);
 		if ( !$model->isDirty ( 'updated_by' ) ) {
-			$model->modified_by = Auth::user()->id;			
+			$model->updated_by = Auth::user()->id;			
 		}
 	}
 
